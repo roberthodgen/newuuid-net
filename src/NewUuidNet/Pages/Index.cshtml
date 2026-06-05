@@ -1,0 +1,43 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "New UUID";
+}
+
+<section class="hero" aria-labelledby="title">
+    <p class="eyebrow">newuuid.net</p>
+    <h1 id="title">One fresh UUID, however you ask.</h1>
+    <p class="lede">
+        Use this page in a browser for copyable output, or call it directly from a terminal for plain text.
+    </p>
+
+    <div class="uuid-card">
+        <span class="label">New UUID</span>
+        <code id="uuid">@Model.Uuid</code>
+        <button id="copy-button" type="button">Copy</button>
+        <span id="copy-status" role="status" aria-live="polite"></span>
+    </div>
+
+    <div class="curl-card">
+        <span class="label">curl</span>
+        <pre><code>curl https://newuuid.net</code></pre>
+        <p>Because curl does not explicitly ask for HTML, the root URL returns only a UUID and a newline.</p>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        const button = document.getElementById('copy-button');
+        const uuid = document.getElementById('uuid');
+        const status = document.getElementById('copy-status');
+
+        button.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(uuid.textContent.trim());
+                status.textContent = 'Copied';
+            } catch {
+                status.textContent = 'Copy failed';
+            }
+        });
+    </script>
+}

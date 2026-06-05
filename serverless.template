@@ -1,0 +1,44 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "newuuid.net UUID utility hosted on AWS Lambda.",
+  "Resources": {
+    "NewUuidNetFunction": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "NewUuidNet",
+        "Runtime": "dotnet8",
+        "CodeUri": "src/NewUuidNet/",
+        "MemorySize": 256,
+        "Timeout": 10,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "HttpApiProxy": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/{proxy+}",
+              "Method": "ANY"
+            }
+          },
+          "HttpApiRoot": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/",
+              "Method": "ANY"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiUrl": {
+      "Description": "HTTP API endpoint URL",
+      "Value": {
+        "Fn::Sub": "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #f8fafc;
+  background: radial-gradient(circle at top left, #1d4ed8 0, transparent 36rem), #020617;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.page-shell {
+  width: min(56rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 6rem 0;
+}
+
+.hero {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.eyebrow,
+.label {
+  color: #93c5fd;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  line-height: 0.9;
+}
+
+.lede {
+  max-width: 40rem;
+  margin: 0;
+  color: #cbd5e1;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+}
+
+.uuid-card,
+.curl-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 1.5rem;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.35);
+}
+
+#uuid,
+pre {
+  overflow-x: auto;
+  margin: 0;
+  color: #dbeafe;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  white-space: nowrap;
+}
+
+button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  color: #020617;
+  background: #bfdbfe;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid #f8fafc;
+  outline-offset: 3px;
+}
+
+#copy-status,
+.curl-card p {
+  margin: 0;
+  color: #cbd5e1;
+}
