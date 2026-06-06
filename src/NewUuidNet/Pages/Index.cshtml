@@ -1,18 +1,20 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "New UUID";
-}
 
 <section class="hero" aria-labelledby="title">
     <p class="eyebrow">newuuid.net</p>
     <h1 id="title">One fresh UUID, however you ask.</h1>
     <p class="lede">
-        Use this page in a browser for copyable output, or call it directly from a terminal for plain text.
+        Get a fresh random UUID v4 immediately. Copy it in your browser, or fetch plain text from your terminal with curl.
     </p>
 
+    <ul class="benefits" aria-label="Benefits">
+        <li>Fresh UUID v4 on every request.</li>
+        <li>Script-friendly output for developer tooling.</li>
+    </ul>
+
     <div class="uuid-card">
-        <span class="label">New UUID</span>
+        <span class="label">New UUID v4</span>
         <code id="uuid">@Model.Uuid</code>
         <button id="copy-button" type="button">Copy</button>
         <span id="copy-status" role="status" aria-live="polite"></span>
@@ -21,7 +23,7 @@
     <div class="curl-card">
         <span class="label">curl</span>
         <pre><code>curl https://newuuid.net</code></pre>
-        <p>Because curl does not explicitly ask for HTML, the root URL returns only a UUID and a newline.</p>
+        <p>Because curl does not explicitly ask for HTML, the root URL returns only a UUID.</p>
     </div>
 </section>
 

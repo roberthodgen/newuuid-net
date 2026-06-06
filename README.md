@@ -1,16 +1,37 @@
 # newuuid.net
 
-A small ASP.NET Core Razor Pages application for returning fresh UUIDs.
+Instant UUID v4 generation for developers.
 
-## Usage
+`newuuid.net` gives you a fresh random UUID v4 as quickly as possible: copy one from the browser, or fetch one directly from your terminal with `curl`. It is built for one-off IDs, scripts, CLIs, CI jobs, and developer tooling that just need a valid UUID without signup, API keys, JSON parsing, or extra routes.
 
-Plain text UUID:
+## Quick Use
 
 ```bash
 curl https://newuuid.net
 ```
 
-Browser requests to `/` render an HTML page with curl instructions and a copy button.
+Example response:
+
+```text
+2f5f0c6d-8e77-4d7e-9d61-6f9e08f1f8c2
+```
+
+## Why Use It?
+
+- Fresh UUID v4 on every request.
+- Plain text response for terminal and script usage.
+- Browser page with a copy button for quick manual use.
+- No account, API key, tracking parameter, or request body required.
+- No JSON to parse when all you need is the ID.
+
+## Browser And curl Behavior
+
+`GET /` checks the request `Accept` header so the same URL works well for humans and command-line tools.
+
+- Requests that explicitly accept `text/html` or `application/xhtml+xml` receive the browser page.
+- Other requests, including curl's default `Accept: */*`, receive `text/plain`.
+- Plain text responses contain only the UUID and a trailing newline.
+- UUID responses send no-cache headers so every request can return a fresh value.
 
 ## Local Development
 
@@ -30,14 +51,19 @@ Test browser-style HTML behavior:
 curl -H "Accept: text/html" http://localhost:5001
 ```
 
-## Behavior
+## Build
 
-`GET /` checks the request `Accept` header.
+```bash
+make build
+```
 
-- Requests that explicitly accept `text/html` or `application/xhtml+xml` are served by Razor Pages.
-- Other requests, including curl's default `Accept: */*`, receive `text/plain`.
+This publishes the app into `build/publish` and creates `build/newuuid-net.zip`.
 
-UUID responses send no-cache headers.
+Clean generated build output:
+
+```bash
+make clean
+```
 
 ## Deploy To AWS Lambda
 
@@ -47,43 +73,13 @@ Install the Lambda tooling if needed:
 dotnet tool install -g Amazon.Lambda.Tools
 ```
 
-Build a local deployment artifact:
-
-```bash
-make build
-```
-
-This publishes the app into `build/publish` and creates `build/newuuid-net.zip`.
-
 Deploy the serverless stack:
 
 ```bash
 AWS_PROFILE=personal-prod make deploy
 ```
 
-Clean generated build output:
-
-```bash
-make clean
-```
-
-The deployment uses `src/NewUuidNet/aws-lambda-tools-defaults.json` and `serverless.template`. The template creates a Lambda function behind an API Gateway HTTP API. The Makefile calls `dotnet lambda deploy-serverless` with the project location, profile, region, and stack name; the Lambda tooling handles packaging during deployment.
-
-Common environment overrides:
-
-```bash
-AWS_PROFILE=my-profile AWS_REGION=us-west-2 make deploy
-```
-
-```bash
-STACK_NAME=newuuid-net-prod make deploy
-```
-
-```bash
-CONFIGURATION=Debug BUILD_DIR=.build make build
-```
-
-Available Makefile variables:
+## Makefile Variables
 
 - `PROJECT`: project file to publish, default `src/NewUuidNet/NewUuidNet.csproj`.
 - `PROJECT_LOCATION`: Lambda project directory, default `src/NewUuidNet`.
@@ -93,5 +89,5 @@ Available Makefile variables:
 - `PUBLISH_DIR`: local publish directory, default `$(BUILD_DIR)/publish`.
 - `PACKAGE_FILE`: local zip artifact, default `$(BUILD_DIR)/newuuid-net.zip`.
 - `AWS_PROFILE`: AWS profile for deployment, default `default`.
-- `AWS_REGION`: AWS region for deployment, default `us-east-1`.
+- `AWS_REGION`: AWS region, default `us-east-1`.
 - `STACK_NAME`: CloudFormation stack name, default `newuuid-net`.
