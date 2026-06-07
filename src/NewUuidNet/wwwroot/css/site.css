@@ -60,26 +60,28 @@ h1 {
 .card-header {
     display: flex;
     flex-wrap: wrap;
-    /*align-items: center;*/
+    align-items: center;
+    justify-content: space-between;
     gap: 0.75rem;
 }
+
 
 .github-link {
     display: inline-flex;
     width: fit-content;
-    border: 1px solid rgba(103, 232, 249, 0.4);
+    border: 1px solid rgb(167 100 231 / 0.4);
     border-radius: 999px;
     padding: 0.8rem 1.05rem;
     color: #ecfeff;
-    background: rgba(8, 47, 73, 0.62);
+    background: rgba(168, 85, 247, 0.22);
     font-weight: 800;
     text-decoration: none;
-    box-shadow: 0 0 2rem rgba(34, 211, 238, 0.14);
+    box-shadow: 0 0 2rem rgba(168, 85, 247, 0.14);
 }
 
 .github-link:hover {
-    border-color: rgba(34, 211, 238, 0.8);
-    background: rgba(14, 116, 144, 0.5);
+    border-color: rgba(168, 85, 247, 0.8);
+    background: rgba(168, 85, 247, 0.5);
 }
 
 .benefits {
@@ -147,45 +149,39 @@ pre {
 }
 
 .copy-button {
-    min-width: 8.75rem;
+    /*min-width: 8.75rem;*/
     border: 0;
     border-radius: 999px;
     padding: 0.8rem 1.1rem;
-    color: #03121a;
-    background: linear-gradient(135deg, #67e8f9, #a7f3d0);
+    color: #e0f2fe;
+    background: none;
     font-weight: 800;
     cursor: pointer;
     transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-.copy-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0.9rem 2rem rgba(34, 211, 238, 0.18);
-}
-
 .terminal .copy-button {
     position: absolute;
-    top: 0.75rem;
+    top: 0.5rem;
     right: 0.75rem;
 }
 
 .terminal:hover .copy-button,
 .terminal:focus-within .copy-button {
-    box-shadow: 0 0.9rem 2rem rgba(34, 211, 238, 0.22);
+    color: #67E8F9;
 }
 
 .card-header .copy-button {
     padding: 0.68rem 0.95rem;
 }
 
-.copy-button.is-copied {
-    color: #052e16;
-    background: linear-gradient(135deg, #a7f3d0, #bef264);
+.terminal:hover .copy-button.is-copied,
+.terminal:focus-within .copy-button.is-copied {
+    color: #a7f3d0;
 }
 
 .copy-button.is-error {
     color: #450a0a;
-    background: linear-gradient(135deg, #fecaca, #fca5a5);
 }
 
 .copy-button:focus-visible {
@@ -193,10 +189,8 @@ pre {
     outline-offset: 3px;
 }
 
-.copy-status,
 .curl-card p {
     margin: 0;
-    color: #cbd5e1;
 }
 
 .copy-status {

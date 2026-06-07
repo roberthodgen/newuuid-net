@@ -2,16 +2,16 @@
 @model IndexModel
 
 <section class="hero" aria-labelledby="title">
-    <p class="eyebrow">newuuid.net</p>
+    <div class="hero-actions" aria-label="Project links">
+        <p class="eyebrow">newuuid.net</p>
+        <a class="github-link" href="https://github.com/roberthodgen/newuuid-net">View on GitHub</a>
+    </div>
+
     <h1 id="title">One fresh UUID, however you ask ⚡</h1>
     <p class="lede">
         Generate a fresh random UUID v4 at the edge of your workflow. Copy it in your browser, or pipe plain text
         straight into your terminal with <code>curl</code>.
     </p>
-
-    <div class="hero-actions" aria-label="Project links">
-        <a class="github-link" href="https://github.com/roberthodgen/newuuid-net">View on GitHub</a>
-    </div>
 
     <ul class="benefits" aria-label="Benefits">
         <li>Fresh UUID v4 on every request.</li>
@@ -31,7 +31,7 @@
             <span class="label">curl</span>
             <span class="copy-status" role="status" aria-live="polite"></span>
         </div>
-        <pre class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
+        <pre class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
 <span class="terminal-output">@Model.Uuid</span></code></pre>
         <p>Because curl does not explicitly ask for HTML (<code>Accept */*</code>), the root URL returns only a UUID.</p>
     </div>
