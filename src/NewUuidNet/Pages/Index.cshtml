@@ -3,10 +3,15 @@
 
 <section class="hero" aria-labelledby="title">
     <p class="eyebrow">newuuid.net</p>
-    <h1 id="title">One fresh UUID, however you ask.</h1>
+    <h1 id="title">One fresh UUID, however you ask ⚡</h1>
     <p class="lede">
-        Get a fresh random UUID v4 immediately. Copy it in your browser, or fetch plain text from your terminal with curl.
+        Generate a fresh random UUID v4 at the edge of your workflow. Copy it in your browser, or pipe plain text
+        straight into your terminal with <code>curl</code>.
     </p>
+
+    <div class="hero-actions" aria-label="Project links">
+        <a class="github-link" href="https://github.com/roberthodgen/newuuid-net">View on GitHub</a>
+    </div>
 
     <ul class="benefits" aria-label="Benefits">
         <li>Fresh UUID v4 on every request.</li>
@@ -14,32 +19,71 @@
     </ul>
 
     <div class="uuid-card">
-        <span class="label">New UUID v4</span>
-        <code id="uuid">@Model.Uuid</code>
-        <button id="copy-button" type="button">Copy</button>
-        <span id="copy-status" role="status" aria-live="polite"></span>
+        <div class="card-header">
+            <span class="label">New UUID v4</span>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+        </div>
+        <pre class="terminal" id="uuid" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button>@Model.Uuid</pre>
     </div>
 
     <div class="curl-card">
-        <span class="label">curl</span>
-        <pre><code>curl https://newuuid.net</code></pre>
-        <p>Because curl does not explicitly ask for HTML, the root URL returns only a UUID.</p>
+        <div class="card-header">
+            <span class="label">curl</span>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+        </div>
+        <pre class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
+<span class="terminal-output">@Model.Uuid</span></code></pre>
+        <p>Because curl does not explicitly ask for HTML (<code>Accept */*</code>), the root URL returns only a UUID.</p>
     </div>
 </section>
 
 @section Scripts {
     <script>
-        const button = document.getElementById('copy-button');
-        const uuid = document.getElementById('uuid');
-        const status = document.getElementById('copy-status');
+        const copyTerminals = document.querySelectorAll('.terminal');
 
-        button.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(uuid.textContent.trim());
-                status.textContent = 'Copied';
-            } catch {
-                status.textContent = 'Copy failed';
-            }
+        copyTerminals.forEach((terminal) => {
+            const button = terminal.querySelector('.copy-button');
+
+            const copyTerminalText = async () => {
+                const text = terminal.dataset.copyText;
+                const status = terminal.closest('.uuid-card, .curl-card').querySelector('.copy-status');
+                const originalText = terminal.dataset.copyLabel ?? button.textContent;
+                const copiedText = terminal.dataset.copiedLabel ?? 'Copied';
+
+                if (!text) {
+                    button.textContent = 'Copy failed';
+                    button.classList.add('is-error');
+                    status.textContent = 'Nothing to copy';
+
+                    window.setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('is-error');
+                        status.textContent = '';
+                    }, 1800);
+
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(text);
+                    button.textContent = copiedText;
+                    button.classList.add('is-copied');
+                    status.textContent = `${copiedText} to clipboard`;
+                } catch {
+                    button.textContent = 'Copy failed';
+                    button.classList.add('is-error');
+                    status.textContent = 'Copy failed';
+                }
+
+                window.setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('is-copied');
+                    button.classList.remove('is-error');
+                    status.textContent = '';
+                }, 1800);
+            };
+
+            terminal.addEventListener('click', copyTerminalText);
         });
     </script>
 }
