@@ -1,7 +1,7 @@
 PROJECT ?= src/NewUuidNet/NewUuidNet.csproj
 PROJECT_LOCATION ?= src/NewUuidNet
 CONFIGURATION ?= Release
-FRAMEWORK ?= net8.0
+FRAMEWORK ?= net10.0
 BUILD_DIR ?= build
 PACKAGE_FILE ?= $(BUILD_DIR)/newuuid-net.zip
 

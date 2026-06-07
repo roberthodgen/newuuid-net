@@ -84,7 +84,7 @@ AWS_PROFILE=personal-prod make deploy
 - `PROJECT`: project file to publish, default `src/NewUuidNet/NewUuidNet.csproj`.
 - `PROJECT_LOCATION`: Lambda project directory, default `src/NewUuidNet`.
 - `CONFIGURATION`: .NET build configuration, default `Release`.
-- `FRAMEWORK`: .NET target framework, default `net8.0`.
+- `FRAMEWORK`: .NET target framework, default `net10.0`.
 - `BUILD_DIR`: local artifact directory, default `build`.
 - `PUBLISH_DIR`: local publish directory, default `$(BUILD_DIR)/publish`.
 - `PACKAGE_FILE`: local zip artifact, default `$(BUILD_DIR)/newuuid-net.zip`.

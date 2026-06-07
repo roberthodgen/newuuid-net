@@ -2,7 +2,7 @@
   "profile": "default",
   "region": "us-east-1",
   "configuration": "Release",
-  "framework": "net8.0",
+  "framework": "net10.0",
   "s3-prefix": "newuuid-net/",
   "template": "../../serverless.template",
   "template-parameters": "",

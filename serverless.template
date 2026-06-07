@@ -7,7 +7,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "NewUuidNet",
-        "Runtime": "dotnet8",
+        "Runtime": "dotnet10",
         "CodeUri": "src/NewUuidNet/",
         "MemorySize": 256,
         "Timeout": 10,
