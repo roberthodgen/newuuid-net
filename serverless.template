@@ -11,6 +11,12 @@
         "CodeUri": "src/NewUuidNet/",
         "MemorySize": 256,
         "Timeout": 10,
+        "AutoPublishAlias": "live",
+        "AutoPublishAliasAllProperties": true,
+        "VersionDeletionPolicy": "Delete",
+        "SnapStart": {
+          "ApplyOn": "PublishedVersions"
+        },
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
