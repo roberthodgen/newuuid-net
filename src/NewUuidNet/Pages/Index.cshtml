@@ -9,13 +9,14 @@
 
     <h1 id="title">One fresh UUID, however you ask ⚡</h1>
     <p class="lede">
-        Generate a fresh random UUID v4 at the edge of your workflow. Copy it in your browser, or pipe plain text
+        Generate a fresh random UUID v4 instantly. Copy to clipboard with one click, or pipe plain text
         straight into your terminal with <code>curl</code>.
     </p>
 
     <ul class="benefits" aria-label="Benefits">
         <li>Fresh UUID v4 on every request.</li>
         <li>Script-friendly output for developer tooling.</li>
+        <li>Refresh for a fresh, random UUID.</li>
     </ul>
 
     <div class="uuid-card">
@@ -23,8 +24,9 @@
             <span class="label">New UUID v4</span>
             <span class="copy-status" role="status" aria-live="polite"></span>
         </div>
+
         <pre class="terminal" id="uuid" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button>@Model.Uuid</pre>
-    </div>
+</div>
 
     <div class="curl-card">
         <div class="card-header">
@@ -35,6 +37,13 @@
 <span class="terminal-output">@Model.Uuid</span></code></pre>
         <p>Because curl does not explicitly ask for HTML (<code>Accept */*</code>), the root URL returns only a UUID.</p>
     </div>
+
+    <h2>How to Use This Tool</h2>
+    <p class="privacy-note">
+        This is a free, client-friendly UUID generator. The UUID you see is generated on our server
+        and sent directly to your browser — no data is collected, stored, or sent to third parties.
+        Refresh the page or click "Generate New UUID" for a fresh value. Copy any UUID to your clipboard with one click.
+    </p>
 </section>
 
 @section Scripts {
