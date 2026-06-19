@@ -1,5 +1,6 @@
 html {
     min-height: 100%;
+    background: #020617;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
     background: radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.26) 0, transparent 24rem),
     radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.22) 0, transparent 26rem),
     linear-gradient(135deg, #020617 0%, #0f172a 48%, #020617 100%);
+    background-color: #020617;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -102,6 +104,7 @@ h1 {
 .uuid-card,
 .curl-card {
     display: grid;
+    min-width: 0;
     gap: 0.85rem;
     padding: clamp(1.25rem, 4vw, 2rem);
     border: 1px solid rgba(103, 232, 249, 0.24);
@@ -112,7 +115,6 @@ h1 {
 }
 
 #uuid {
-    overflow-x: auto;
     margin: 0;
     color: #e0f2fe;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -121,7 +123,10 @@ h1 {
     white-space: nowrap;
 }
 
-pre {
+.terminal-content {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: auto;
     margin: 0;
     color: #e0f2fe;
@@ -132,12 +137,17 @@ pre {
 
 .terminal {
     position: relative;
+    min-width: 0;
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 1rem;
     padding: 1rem 11rem 1rem 1rem;
     background: rgba(2, 6, 23, 0.78);
     cursor: pointer;
     transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.terminal-content {
+    scrollbar-gutter: stable;
 }
 
 .terminal:hover,
@@ -235,7 +245,10 @@ h2 {
     }
 
     .terminal .copy-button {
-        right: auto;
-        left: 1rem;
+        top: 0.65rem;
+        right: 0.65rem;
+        left: auto;
+        padding: 0.55rem 0.8rem;
+        font-size: 0.8rem;
     }
 }

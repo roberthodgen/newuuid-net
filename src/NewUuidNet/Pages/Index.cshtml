@@ -25,7 +25,7 @@
             <span class="copy-status" role="status" aria-live="polite"></span>
         </div>
 
-        <pre class="terminal" id="uuid" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button>@Model.Uuid</pre>
+        <div class="terminal" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button><pre class="terminal-content" id="uuid">@Model.Uuid</pre></div>
 </div>
 
     <div class="curl-card">
@@ -33,8 +33,8 @@
             <span class="label">curl</span>
             <span class="copy-status" role="status" aria-live="polite"></span>
         </div>
-        <pre class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
-<span class="terminal-output">@Model.Uuid</span></code></pre>
+        <div class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><pre class="terminal-content"><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
+<span class="terminal-output">@Model.Uuid</span></code></pre></div>
         <p>Because curl does not explicitly ask for HTML (<code>Accept */*</code>), the root URL returns only a UUID.</p>
     </div>
 
