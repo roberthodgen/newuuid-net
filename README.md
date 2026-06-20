@@ -67,7 +67,10 @@ make clean
 
 ## Deploy To AWS Lambda
 
-Install the Lambda tooling if needed:
+Pushes to `main` deploy automatically through GitHub Actions. See `DEPLOY.md` for the GitHub OIDC role, IAM policy, and troubleshooting notes.
+
+For local fallback deployment, install the Lambda tooling if needed:
+
 
 ```bash
 dotnet tool install -g Amazon.Lambda.Tools
@@ -86,8 +89,7 @@ AWS_PROFILE=personal-prod make deploy
 - `CONFIGURATION`: .NET build configuration, default `Release`.
 - `FRAMEWORK`: .NET target framework, default `net10.0`.
 - `BUILD_DIR`: local artifact directory, default `build`.
-- `PUBLISH_DIR`: local publish directory, default `$(BUILD_DIR)/publish`.
 - `PACKAGE_FILE`: local zip artifact, default `$(BUILD_DIR)/newuuid-net.zip`.
-- `AWS_PROFILE`: AWS profile for deployment, default `default`.
 - `AWS_REGION`: AWS region, default `us-east-1`.
 - `STACK_NAME`: CloudFormation stack name, default `newuuid-net`.
+- `S3_BUCKET`: S3 bucket for Lambda deployment artifacts, default `newuuid-net`.

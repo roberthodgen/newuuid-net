@@ -15,7 +15,16 @@ Single-project .NET 10 app (`src/NewUuidNet/`). Serving UUID v4 via ASP.NET Core
 ## Deploy Prerequisites
 
 - `dotnet tool install -g Amazon.Lambda.Tools` (one-time)
-- AWS credentials configured via `AWS_PROFILE`
+- Local deploys require AWS credentials configured via `AWS_PROFILE`
+
+## Deployment
+
+- Pushes to `main` deploy automatically via `.github/workflows/deploy.yml`
+- GitHub Actions assumes AWS IAM role `newuuid-deploy` via OIDC; no stored AWS keys are used
+- CI deploys with `AWS_PROFILE` empty so `dotnet lambda deploy-serverless` uses OIDC-provided environment credentials
+- Local fallback deploy: `AWS_PROFILE=personal-prod make deploy`
+- Deployment targets AWS region `us-east-1`, CloudFormation stack `newuuid-net`, S3 bucket `newuuid-net`
+- Full IAM setup and troubleshooting notes are in `DEPLOY.md`
 
 ## Architecture
 
@@ -27,6 +36,6 @@ Single-project .NET 10 app (`src/NewUuidNet/`). Serving UUID v4 via ASP.NET Core
 
 ## Gotchas
 
-- No tests, no CI, no lint/typecheck — nothing to verify changes against
-- `build/` is gitignored; the committed `build/newuuid-net.zip` is stale — always run `make build`
+- No tests or lint/typecheck; the only GitHub workflow is deployment on `main`
+- `build/` is gitignored and generated locally/CI; always run `make build` before relying on `build/newuuid-net.zip`
 - Dev port is `5001` (not the default `5000`)
