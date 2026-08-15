@@ -1,6 +1,5 @@
 html {
     min-height: 100%;
-    background: #020617;
 }
 
 body {
@@ -10,7 +9,6 @@ body {
     background: radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.26) 0, transparent 24rem),
     radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.22) 0, transparent 26rem),
     linear-gradient(135deg, #020617 0%, #0f172a 48%, #020617 100%);
-    background-color: #020617;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -102,9 +100,9 @@ h1 {
 }
 
 .uuid-card,
-.curl-card {
+.curl-card,
+.command-card {
     display: grid;
-    min-width: 0;
     gap: 0.85rem;
     padding: clamp(1.25rem, 4vw, 2rem);
     border: 1px solid rgba(103, 232, 249, 0.24);
@@ -115,6 +113,7 @@ h1 {
 }
 
 #uuid {
+    overflow-x: auto;
     margin: 0;
     color: #e0f2fe;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -123,10 +122,7 @@ h1 {
     white-space: nowrap;
 }
 
-.terminal-content {
-    display: block;
-    max-width: 100%;
-    min-width: 0;
+pre {
     overflow-x: auto;
     margin: 0;
     color: #e0f2fe;
@@ -136,18 +132,49 @@ h1 {
 }
 
 .terminal {
+    --terminal-copy-space: 10rem;
+
     position: relative;
-    min-width: 0;
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 1rem;
-    padding: 1rem 11rem 1rem 1rem;
+    padding: 1rem var(--terminal-copy-space) 1rem 1rem;
     background: rgba(2, 6, 23, 0.78);
     cursor: pointer;
     transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-.terminal-content {
-    scrollbar-gutter: stable;
+.command-card .terminal {
+    overflow-x: hidden;
+    padding: 1rem;
+}
+
+.command-card .terminal::after {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    z-index: 1;
+    width: var(--terminal-copy-space);
+    border-radius: 0 1rem 1rem 0;
+    background: linear-gradient(90deg, rgba(2, 6, 23, 0), rgba(2, 6, 23, 0.86) 35%, rgba(2, 6, 23, 0.96));
+    content: "";
+    pointer-events: none;
+}
+
+.terminal > code {
+    display: block;
+}
+
+.command-card .terminal > code {
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: auto;
+    padding-right: var(--terminal-copy-space);
+    scrollbar-width: none;
+}
+
+.command-card .terminal > code::-webkit-scrollbar {
+    display: none;
 }
 
 .terminal:hover,
@@ -168,7 +195,6 @@ h1 {
 }
 
 .copy-button {
-    /*min-width: 8.75rem;*/
     border: 0;
     border-radius: 999px;
     padding: 0.8rem 1.1rem;
@@ -181,8 +207,10 @@ h1 {
 
 .terminal .copy-button {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 0.5rem;
+    right: 0;
+    z-index: 2;
+    inline-size: var(--terminal-copy-space);
 }
 
 .terminal:hover .copy-button,
@@ -208,8 +236,20 @@ h1 {
     outline-offset: 3px;
 }
 
-.curl-card p {
+.curl-card p,
+.command-card p {
     margin: 0;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.curl-card p code,
+.command-card p code {
+    color: #a7f3d0;
+    background: rgba(148, 163, 184, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
 }
 
 .copy-status {
@@ -230,13 +270,71 @@ h2 {
     line-height: 1.65;
 }
 
+.commands-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.faq {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.faq-item {
+    border: 1px solid rgba(103, 232, 249, 0.24);
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(8, 47, 73, 0.52));
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+}
+
+.faq-question {
+    margin: 0;
+    padding: 1rem 1.5rem 1rem 1.25rem;
+    font-weight: 600;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: #e0f2fe;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.faq p {
+    margin: 0 1.25rem 1rem;
+    padding-top: 0.5rem;
+    color: #94a3b8;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.65;
+}
+
+.faq p code {
+    color: #a7f3d0;
+    background: rgba(148, 163, 184, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.faq a {
+    color: #67e8f9;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.faq a:hover {
+    color: #a7f3d0;
+}
+
 @media (max-width: 42rem) {
     h1 {
         letter-spacing: -0.06em;
     }
 
     .uuid-card,
-    .curl-card {
+    .curl-card,
+    .command-card {
         border-radius: 1.15rem;
     }
 
@@ -244,11 +342,16 @@ h2 {
         padding: 4.75rem 1rem 1rem;
     }
 
+    .command-card .terminal::after {
+        display: none;
+    }
+
     .terminal .copy-button {
-        top: 0.65rem;
-        right: 0.65rem;
-        left: auto;
-        padding: 0.55rem 0.8rem;
-        font-size: 0.8rem;
+        right: auto;
+        left: 1rem;
+    }
+
+    .commands-grid {
+        grid-template-columns: 1fr;
     }
 }

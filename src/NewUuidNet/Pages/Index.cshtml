@@ -9,13 +9,13 @@
 
     <h1 id="title">One fresh UUID, however you ask ⚡</h1>
     <p class="lede">
-        Generate a fresh random UUID v4 instantly. Copy to clipboard with one click, or pipe plain text
-        straight into your terminal with <code>curl</code>.
+        Generate a fresh random UUID v4 instantly. Copy to clipboard with one click, or generate from your
+        terminal with <code>curl</code>, bash, Python, or PowerShell.
     </p>
 
     <ul class="benefits" aria-label="Benefits">
         <li>Fresh UUID v4 on every request.</li>
-        <li>Script-friendly output for developer tooling.</li>
+        <li>Script-friendly output — works in bash, Python, PowerShell, and more.</li>
         <li>Refresh for a fresh, random UUID.</li>
     </ul>
 
@@ -25,25 +25,85 @@
             <span class="copy-status" role="status" aria-live="polite"></span>
         </div>
 
-        <div class="terminal" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button><pre class="terminal-content" id="uuid">@Model.Uuid</pre></div>
-</div>
+        <pre class="terminal" id="uuid" data-copy-text="@Model.Uuid" data-copy-label="Copy UUID" data-copied-label="Copied UUID"><button class="copy-button" type="button">Copy UUID</button>@Model.Uuid</pre>
+    </div>
 
-    <div class="curl-card">
-        <div class="card-header">
-            <span class="label">curl</span>
-            <span class="copy-status" role="status" aria-live="polite"></span>
+    <h2 id="terminal-examples">Terminal &amp; Script Examples</h2>
+    <div class="commands-grid">
+        <div class="command-card">
+            <div class="card-header">
+                <span class="label">curl</span>
+                <span class="copy-status" role="status" aria-live="polite"></span>
+            </div>
+            <pre class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> curl https://newuuid.net</code></pre>
+            <p>Fetch a UUID directly from this site. Returns plain text — no HTML.</p>
         </div>
-        <div class="terminal" data-copy-text="curl https://newuuid.net" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><pre class="terminal-content"><code><span class="prompt">$</span> <span id="curl-command">curl https://newuuid.net</span>
-<span class="terminal-output">@Model.Uuid</span></code></pre></div>
-        <p>Because curl does not explicitly ask for HTML (<code>Accept */*</code>), the root URL returns only a UUID.</p>
+
+        <div class="command-card">
+            <div class="card-header">
+                <span class="label">bash</span>
+                <span class="copy-status" role="status" aria-live="polite"></span>
+            </div>
+            <pre class="terminal" data-copy-text="uuidgen" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> uuidgen</code></pre>
+            <p>Built-in on macOS and many Linux distros (util-linux). Check with <code>which uuidgen</code>.</p>
+        </div>
+
+        <div class="command-card">
+            <div class="card-header">
+                <span class="label">Python</span>
+                <span class="copy-status" role="status" aria-live="polite"></span>
+            </div>
+            <pre class="terminal" data-copy-text="python3 -c &quot;import uuid; print(uuid.uuid4())&quot;" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">$</span> python3 -c "import uuid; print(uuid.uuid4())"</code></pre>
+            <p>Uses Python's built-in <code>uuid</code> module. No pip install needed.</p>
+        </div>
+
+        <div class="command-card">
+            <div class="card-header">
+                <span class="label">PowerShell</span>
+                <span class="copy-status" role="status" aria-live="polite"></span>
+            </div>
+            <pre class="terminal" data-copy-text="[guid]::NewGuid()" data-copy-label="Copy Command" data-copied-label="Copied command"><button class="copy-button" type="button">Copy Command</button><code><span class="prompt">PS&gt;</span> [guid]::NewGuid()</code></pre>
+            <p>Native .NET method. Works on Windows PowerShell and cross-platform PowerShell 7+.</p>
+        </div>
     </div>
 
     <h2>How to Use This Tool</h2>
     <p class="privacy-note">
         This is a free, client-friendly UUID generator. The UUID you see is generated on our server
         and sent directly to your browser — no data is collected, stored, or sent to third parties.
-        Refresh the page or click "Generate New UUID" for a fresh value. Copy any UUID to your clipboard with one click.
+        Refresh the page for a fresh value. Copy any UUID to your clipboard with one click.
     </p>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+        <section class="faq-item" aria-labelledby="faq-bash">
+            <h3 class="faq-question" id="faq-bash">How do I generate a UUID in bash?</h3>
+            <p>
+                Use <code>uuidgen</code> on macOS or Linux (check availability with <code>which uuidgen</code>).
+                If it's not installed, you can also fetch one from this site:
+                <code>curl https://newuuid.net</code>. See the
+                <a href="#terminal-examples">terminal examples above</a> for more options.
+            </p>
+        </section>
+
+        <section class="faq-item" aria-labelledby="faq-v4">
+            <h3 class="faq-question" id="faq-v4">What is a UUID v4?</h3>
+            <p>
+                A UUID v4 is a 128-bit identifier generated using random numbers, as defined by
+                <a href="https://datatracker.ietf.org/doc/html/rfc4122" rel="nofollow">RFC 4122</a>.
+                It provides 122 bits of randomness, making collisions virtually impossible.
+                Learn more on <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" rel="nofollow">Wikipedia</a>.
+            </p>
+        </section>
+
+        <section class="faq-item" aria-labelledby="faq-secure">
+            <h3 class="faq-question" id="faq-secure">Is this UUID generator secure?</h3>
+            <p>
+                Yes. UUIDs are generated using cryptographically secure random number generators.
+                No data is stored, logged, or sent to third parties. Every request is independent and stateless.
+            </p>
+        </section>
+    </div>
 </section>
 
 @section Scripts {
@@ -55,7 +115,7 @@
 
             const copyTerminalText = async () => {
                 const text = terminal.dataset.copyText;
-                const status = terminal.closest('.uuid-card, .curl-card').querySelector('.copy-status');
+                const status = terminal.closest('.uuid-card, .curl-card, .command-card').querySelector('.copy-status');
                 const originalText = terminal.dataset.copyLabel ?? button.textContent;
                 const copiedText = terminal.dataset.copiedLabel ?? 'Copied';
 
