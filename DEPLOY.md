@@ -70,7 +70,7 @@ Where `trust-policy.json` restricts access to `main` only:
       "Condition": {
         "StringEquals": {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:roberthodgen/newuuid-com:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:roberthodgen/newuuid-net:ref:refs/heads/main"
         }
       }
     }
