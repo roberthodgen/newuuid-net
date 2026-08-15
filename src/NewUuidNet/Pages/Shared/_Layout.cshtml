@@ -3,18 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#020617" />
-    <title>Random UUID - newuuid.net</title>
-    <meta name="description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click. No registration required." />
+    <title>Generate Random UUID Online | Free UUID Generator - newuuid.net</title>
+    <meta name="description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click. Works in your browser, bash, curl, Python, and PowerShell. No registration required." />
     <link rel="canonical" href="https://newuuid.net/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://newuuid.net/" />
-    <meta property="og:title" content="Random UUID - newuuid.net" />
-    <meta property="og:description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click." />
+    <meta property="og:title" content="Generate Random UUID Online | Free UUID Generator - newuuid.net" />
+    <meta property="og:description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click. Works in bash, curl, Python, and PowerShell." />
     <meta property="og:site_name" content="newuuid.net" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Random UUID - newuuid.net" />
-    <meta name="twitter:description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click." />
+    <meta name="twitter:title" content="Generate Random UUID Online | Free UUID Generator - newuuid.net" />
+    <meta name="twitter:description" content="Instantly generate random UUIDs (v4) online. Free, fast, and secure. Copy to clipboard with one click. Works in bash, curl, Python, and PowerShell." />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script type="application/ld+json">
         {
@@ -30,6 +29,38 @@
             "price": "0",
             "priceCurrency": "USD"
           }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@@type": "Question",
+              "name": "How do I generate a UUID in bash?",
+              "acceptedAnswer": {
+                "@@type": "Answer",
+                "text": "Use uuidgen on macOS or Linux (check availability with which uuidgen). If unavailable, you can also fetch one from this site with curl https://newuuid.net. See the terminal examples above for more options."
+              }
+            },
+            {
+              "@@type": "Question",
+              "name": "What is a UUID v4?",
+              "acceptedAnswer": {
+                "@@type": "Answer",
+                "text": "A UUID v4 is a 128-bit identifier generated using random numbers, as defined by RFC 4122. It provides 122 bits of randomness, making collisions virtually impossible. Learn more on Wikipedia."
+              }
+            },
+            {
+              "@@type": "Question",
+              "name": "Is this UUID generator secure?",
+              "acceptedAnswer": {
+                "@@type": "Answer",
+                "text": "Yes. UUIDs are generated using cryptographically secure random number generators. No data is stored, logged, or sent to third parties. Every request is independent and stateless."
+              }
+            }
+          ]
         }
     </script>
 </head>
